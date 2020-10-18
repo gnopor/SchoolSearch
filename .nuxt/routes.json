@@ -1,0 +1,37 @@
+[
+  {
+    "name": "consultation",
+    "path": "/consultation",
+    "component": "/home/gnop/Videos/Stage/SchoolSearch/frontend/pages/consultation/index.vue",
+    "chunkName": "pages/consultation/index",
+    "_name": "_3a01415e"
+  },
+  {
+    "name": "ecole",
+    "path": "/ecole",
+    "component": "/home/gnop/Videos/Stage/SchoolSearch/frontend/pages/ecole/index.vue",
+    "chunkName": "pages/ecole/index",
+    "_name": "_1d7529d0"
+  },
+  {
+    "name": "eleve",
+    "path": "/eleve",
+    "component": "/home/gnop/Videos/Stage/SchoolSearch/frontend/pages/eleve/index.vue",
+    "chunkName": "pages/eleve/index",
+    "_name": "_4438934a"
+  },
+  {
+    "name": "consultation-id",
+    "path": "/consultation/:id",
+    "component": "/home/gnop/Videos/Stage/SchoolSearch/frontend/pages/consultation/_id/index.vue",
+    "chunkName": "pages/consultation/_id/index",
+    "_name": "_018669bc"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/home/gnop/Videos/Stage/SchoolSearch/frontend/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_07c5285d"
+  }
+]
