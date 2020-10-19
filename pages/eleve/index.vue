@@ -88,7 +88,9 @@ export default {
     };
   },
   methods: {
-    handleClasse() {},
+    handleClasse() {
+      console.log(this.eleve);
+    },
     handleAddStudent() {
       if (
         this.eleve.nom &&
@@ -102,12 +104,13 @@ export default {
           prenom: "",
           sexe: "",
           classe: "",
-          new: true,
         };
+        this.eleves = [...this.$store.getters["ecole/loadedEleves"]];
       }
     },
 
     sendEleves() {
+      console.log("seer");
       this.$store.dispatch("ecole/sendEleves");
     },
   },

@@ -1,30 +1,32 @@
 <template>
-  <form v-if="!ecole.valid" @submit.prevent="getLocation">
-    <input
-      class="input"
-      type="text"
-      placeholder="Entrer le nom de l'ecole"
-      required
-      v-model="ecole.titre"
-    />
-    <button>Ajouter l'ecole</button>
-  </form>
-  <form v-else @submit.prevent="addClasse">
-    <select v-model="nom" class="input">
-      <option value="">Choisisser la classe...</option>
-      <option v-for="(nom, index) in nomsClasse" :key="index" :value="nom">
-        {{ nom }}
-      </option>
-    </select>
+  <div>
+    <form v-if="!ecole.id" @submit.prevent="getLocation">
+      <input
+        class="input"
+        type="text"
+        placeholder="Entrer le nom de l'ecole"
+        required
+        v-model="ecole.titre"
+      />
+      <button>Ajouter l'ecole</button>
+    </form>
+    <form v-else @submit.prevent="addClasse">
+      <select v-model="nom" class="input">
+        <option value="">Choisisser la classe...</option>
+        <option v-for="(nom, index) in nomsClasse" :key="index" :value="nom">
+          {{ nom }}
+        </option>
+      </select>
 
-    <input
-      class="input"
-      type="text"
-      placeholder="filliere"
-      v-model="filliere"
-    />
-    <button>Ajouter la classe</button>
-  </form>
+      <input
+        class="input"
+        type="text"
+        placeholder="filliere"
+        v-model="filliere"
+      />
+      <button>Ajouter la classe</button>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -53,12 +55,12 @@ export default {
         console.log("Geolocation is not supported by this browser.");
       }
     },
-    showPosition(position) {
+    async showPosition(position) {
       this.ecole.latitude = this.ecole.latitude || position.coords.latitude;
       this.ecole.longitude = this.ecole.longitude || position.coords.longitude;
 
       // Fetch location infos
-      axios
+      await axios
         .get(
           `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${this.ecole.latitude}&longitude=${this.ecole.longitude}&localityLanguage=en`
         )
@@ -67,8 +69,17 @@ export default {
           this.ecole.postal_code = myObj.postcode;
           this.ecole.city = myObj.locality;
           this.ecole.country = myObj.countryName;
-          this.ecole.valid = true;
-          this.$emit("submit", this.ecole);
+        });
+
+      await axios
+        .post(process.env.baseUrl + "/ecole/", {
+          titre: this.ecole.titre,
+          latitude: this.ecole.latitude,
+          longitude: this.ecole.longitude,
+        })
+        .then((res) => {
+          this.$emit("submit", res.data);
+          location.reload();
         });
     },
     addClasse() {
@@ -78,10 +89,6 @@ export default {
         this.filliere = null;
       }
     },
-  },
-  created() {
-    /*     console.log("form ecole", this.ecole);
-     */
   },
 };
 </script>

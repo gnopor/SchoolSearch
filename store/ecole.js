@@ -35,7 +35,7 @@ export const mutations = {
 };
 
 export const actions = {
-  setEcole({ commit }, ecole) {
+  async setEcole({ commit }, ecole) {
     commit("setEcole", ecole);
   },
   setClasses({ commit }, classes) {
@@ -60,6 +60,7 @@ export const actions = {
       })
       .then(res => {
         console.log(res.data);
+        location.reload();
       });
   },
   async sendEleves(vuexContext) {
@@ -70,6 +71,7 @@ export const actions = {
       })
       .then(res => {
         console.log(res.data);
+        location.reload();
       });
   }
 };

@@ -99,12 +99,14 @@ export default {
     handleClasse() {},
     async handleAddConsultation() {
       const response = { ...this.questionnaire };
+      console.log(this.eleve);
       if (
         this.eleve.id &&
         response.Angines_fréquentes &&
         response.Otites_fréquentes
       ) {
         const newConsultation = { response, id: this.eleve.id };
+        console.log(newConsultation);
         console.log(process.env.baseUrl);
         await axios
           .post(process.env.baseUrl + "/addQuestionnaire/", newConsultation)
@@ -112,6 +114,7 @@ export default {
             console.log(res.data);
             this.eleve = {};
             this.questionnaire = {};
+            location.reload();
           });
       }
     },

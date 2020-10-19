@@ -1,7 +1,7 @@
 import axios from "axios";
 export default async function(context) {
   const ecole_id = context.store.getters["ecole/loadedEcole"].id;
-  if (!context.store.getters["ecole/loadedClasses"][0]) {
+  if (!context.store.getters["ecole/loadedClasses"][0] && ecole_id) {
     await axios
       .get(process.env.baseUrl + "/listClasses/?ecole=" + ecole_id)
       .then(result => {
