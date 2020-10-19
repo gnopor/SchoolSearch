@@ -68,6 +68,7 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
   env: {
-    baseUrl: "http://localhost:8000/schoolResearch"
+    // baseUrl: "http://localhost:8000/schoolResearch"
+    baseUrl: "https://school-research-api.herokuapp.com/schoolResearch"
   }
 };

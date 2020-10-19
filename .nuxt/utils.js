@@ -150,7 +150,7 @@ export async function setContext (app, context) {
       payload: context.payload,
       error: context.error,
       base: '/',
-      env: {"baseUrl":"http://localhost:8000/schoolResearch"}
+      env: {"baseUrl":"https://school-research-api.herokuapp.com/schoolResearch"}
     }
     // Only set once
     if (!process.static && context.req) {
